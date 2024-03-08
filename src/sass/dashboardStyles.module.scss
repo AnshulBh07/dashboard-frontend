@@ -1,0 +1,43 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.container__main {
+  @include flexProp(column, 2rem, flex-start, center);
+  width: 80%;
+  height: 100%;
+  padding: 2rem;
+  background-color: $dashboard-bg;
+  font-family: "roboto", sans-serif;
+  position: relative;
+
+  .wrapper_stats_profile {
+    @include flexProp(row, 2rem, space-between, flex-start);
+    min-height: fit-content;
+
+    .container_stats {
+      @include flexProp(column, 2rem, flex-start, center);
+      width: 70%;
+
+      .aggregates_wrapper {
+        @include flexProp(row, 1rem, space-between, center);
+      }
+
+      .chart_wrapper {
+        width: 100%;
+        display: grid;
+        gap: 1rem 1.5rem;
+        grid-template-columns: 55% 45%;
+        grid-template-rows: 50% 50%;
+
+        .impressions {
+          @include statTile;
+        }
+
+        .engagement {
+          @include statTile;
+          height: 15rem;
+        }
+      }
+    }
+  }
+}

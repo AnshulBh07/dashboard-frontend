@@ -1,0 +1,10 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.container__main {
+  height: 20rem;
+  width: 20rem;
+  position: absolute;
+  z-index: 2;
+  background-color: #fff;
+}

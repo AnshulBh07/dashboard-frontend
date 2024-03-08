@@ -1,0 +1,127 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.container__main {
+  @include flexProp(column, 0.5rem, flex-start, center);
+  width: 80%;
+  background-color: #fff;
+  border-radius: 10px;
+  font-family: "dm sans", sans-serif;
+  box-shadow: 4px 4px 10px #cecfd8;
+
+  .top {
+    @include flexProp(row, 0.5rem, flex-start, center);
+    padding: 0.6rem 1rem;
+
+    .img_wrapper {
+      height: 3rem;
+      width: 3rem;
+      overflow: hidden;
+      border-radius: 50%;
+      flex-shrink: 0;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .details {
+      @include flexProp(column, 0.2rem, flex-start, flex-start);
+      text-transform: capitalize;
+      font-weight: 600;
+
+      span {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: $post-text;
+      }
+    }
+
+    .moreBtn {
+      @include optionButton;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+    }
+  }
+
+  .content {
+    @include flexProp(column, 0.6rem, flex-start, flex-start);
+    min-height: fit-content;
+
+    .text {
+      padding: 0rem 1rem;
+    }
+
+    .media_container {
+      @include flexProp(row, 0rem, center, center);
+      border-top: 2px solid $post-bg;
+      border-bottom: 2px solid $post-bg;
+      overflow: hidden;
+      position: relative;
+      max-height: 32rem;
+
+      .img_wrapper {
+        @include flexProp(row, 0rem, center, center);
+        position: relative;
+        overflow: hidden;
+
+        .bg {
+          width: 100%;
+          filter: blur(20px);
+          opacity: 0.8;
+        }
+
+        .photo {
+          max-width: 100%;
+          max-height: 32rem;
+          position: absolute;
+          z-index: 2;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    @include flexProp(column, 0.5rem, flex-start, flex-start);
+    padding: 0.5rem 1rem;
+    position: relative;
+
+    .info {
+      @include flexProp(row, 0.1rem, space-between, center);
+
+      .reactions_wrapper {
+        @include flexProp(row, 0rem, flex-start, center);
+
+        img {
+          max-width: 1.5rem;
+        }
+      }
+
+      .values {
+        @include flexProp(row, 0.5rem, flex-start, center);
+        text-align: right;
+        font-family: "dm sans", sans-serif;
+        color: $post-text;
+        font-size: 0.9rem;
+        width: 15rem;
+      }
+    }
+
+    .separator {
+      width: 100%;
+      border: 1px solid $post-btn-hover;
+    }
+
+    .actions_wrapper {
+      @include flexProp(row, 0.5rem, space-between, center);
+      position: relative;
+
+      .optionBtn {
+        @include optionButton;
+        color: $post-text;
+      }
+    }
+  }
+}

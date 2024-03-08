@@ -1,0 +1,53 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.container {
+  @include flexProp(column, 4rem, center, center);
+  background-image: linear-gradient(#aa7feb, #3b7ad9, #aa7feb);
+  width: 20%;
+  height: 100%;
+  font-family: "dm sans", sans-serif;
+
+  .company_name {
+    color: $white-bg;
+    font-weight: 700;
+  }
+
+  nav {
+    width: 100%;
+
+    .navItems_wrapper {
+      @include flexProp(column, 2rem, flex-end, center);
+
+      li {
+        @include flexProp(row, 0rem, flex-end, center);
+
+        .navBtn {
+          @include flexProp(row, 1rem, flex-start, center);
+          width: 15rem;
+          height: 3.2rem;
+          font-size: 0.9rem;
+          cursor: pointer;
+          text-transform: capitalize;
+          font-weight: 600;
+          padding-left: 1.5rem;
+          border-top-left-radius: 25px;
+          border-bottom-left-radius: 25px;
+          border: none;
+          color: $text2;
+          background-color: transparent;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: rgba(256, 256, 256, 0.4);
+          }
+
+          .icon {
+            height: 1.1rem;
+            width: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}

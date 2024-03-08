@@ -1,0 +1,9 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.container {
+  @include statTile;
+  height: 15rem;
+  width: auto;
+  margin-right: 1.5rem;
+}

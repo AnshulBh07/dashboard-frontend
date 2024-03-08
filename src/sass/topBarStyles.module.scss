@@ -1,0 +1,73 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.top_bar {
+  @include flexProp(row, 1rem, space-between, center);
+
+  .name {
+    @include flexProp(row, 0.4rem, flex-start, center);
+    width: auto;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    color: $text1;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .notificationBtn {
+    margin-left: auto;
+    height: 2rem;
+    width: 2rem;
+    color: $text1;
+    @include Buttons;
+
+    .bell_icon {
+      height: 80%;
+      width: 80%;
+    }
+  }
+
+  .search_bar {
+    @include flexProp(row, 0.4rem, center, center);
+    width: auto;
+
+    .input_field {
+      height: 2rem;
+      width: 0;
+      border: none;
+      border-radius: 10px;
+      padding: 0.2rem 0.7rem;
+      font-weight: 500;
+      animation: searchAppear 1s ease forwards;
+      transition: display 3s ease;
+
+      &::placeholder {
+        color: rgb(119, 119, 119);
+        font-size: 0.8rem;
+        text-transform: capitalize;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .search_icon {
+      height: 1.5rem;
+      width: 1.5rem;
+      cursor: pointer;
+    }
+  }
+}
+
+@keyframes searchAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    width: 12rem;
+  }
+}

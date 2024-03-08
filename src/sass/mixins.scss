@@ -1,0 +1,50 @@
+@mixin flexProp($flexDirection, $gap, $justification, $alignment) {
+  display: flex;
+  flex-direction: $flexDirection;
+  gap: $gap;
+  justify-content: $justification;
+  align-items: $alignment;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin Buttons {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@mixin statTile {
+  @include flexProp(column, 1rem, flex-start, flex-start);
+  font-family: "roboto", sans-serif;
+  font-size: 1rem;
+  color: $text1;
+  background-color: $white-bg;
+  padding: 1rem;
+  border-radius: 10px;
+  height: 16rem;
+  box-shadow: 2px 2px 20px rgba($color: $text1, $alpha: 0.1);
+}
+
+@mixin optionButton {
+  @include flexProp(row, 0.5rem, center, center);
+  padding: 0.5rem;
+  font-family: "dm sans", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $post-btn-hover;
+  }
+
+  .icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}

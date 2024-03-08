@@ -1,0 +1,55 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.container {
+  @include statTile;
+  width: auto;
+  margin-right: 1.5rem;
+  gap: 0.6rem;
+
+  p {
+    width: 100%;
+    text-align: left;
+  }
+
+  .total_wrapper {
+    @include flexProp(row, 0rem, space-between, center);
+    list-style-type: none;
+
+    li {
+      @include flexProp(column, 0.1rem, flex-start, center);
+      font-family: "roboto", sans-serif;
+      font-size: 0.7rem;
+      text-transform: capitalize;
+
+      .reactionBtn {
+        height: 2.1rem;
+        width: 2.1rem;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          scale: 1.1;
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      p {
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .value {
+        font-size: 1.1rem;
+        margin-top: 0.2rem;
+      }
+    }
+  }
+}

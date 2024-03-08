@@ -1,0 +1,31 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.container {
+  @include flexProp(row, 0rem, space-between, flex-start);
+  width: 25%;
+  background-color: #fff;
+  padding: 1rem;
+  height: 5rem;
+  font-family: "dm sans", sans-serif;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgb(227, 221, 232);
+
+  .icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .info {
+    @include flexProp(column, 0.3rem, flex-end, space-between);
+    font-size: 0.7rem;
+    text-align: right;
+
+    span {
+      font-size: 1.3rem;
+      margin-left: auto;
+      font-weight: 600;
+    }
+  }
+}
