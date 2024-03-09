@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchAllPosts = async (signal: AbortSignal) => {
   try {
     const response = await axios({
-      url: "http://localhost:3001/posts",
+      url: "https://dashboard-backend-r223.onrender.com/posts",
       method: "get",
       signal: signal,
     });
