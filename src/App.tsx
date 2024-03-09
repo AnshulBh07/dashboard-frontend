@@ -9,18 +9,18 @@ import { PostModal } from "./components/modal/PostModal";
 import { fetchAllPosts } from "./helper-functions/fetchAllPosts";
 import { useDispatch } from "react-redux";
 import { Posts } from "./components/posts-page/Posts";
-import { createTree, getCommentsFromTree } from "./helper-functions/nAryTree";
+import { TreeNode, createTree } from "./helper-functions/nAryTree";
 import { ISocialMediaPost, ITreeItem } from "./data/interface";
 import { CommentModal } from "./components/modal/CommentModal";
 
 const App: React.FC = () => {
-  const { showPostModal, posts, showCommentModal } = useSelector(
+  const { showPostModal, showCommentModal, index } = useSelector(
     (state: RootState) => state.post
   );
   const dispatch: AppDispatch = useDispatch();
 
-  const [commentsMap, setCommentsMap] = useState<Map<string, ITreeItem[]>>(
-    new Map<string, ITreeItem[]>()
+  const [commentsTreeArr, setCommentsTreeArr] = useState<TreeNode<ITreeItem>[]>(
+    new Array<TreeNode<ITreeItem>>()
   );
 
   // let's retrieve data here when the app loads, i.e all social media data
@@ -35,12 +35,9 @@ const App: React.FC = () => {
       if (postsData) {
         // console.log(postsData);
         dispatch({ type: "post/setData", payload: postsData });
-        const resultComments = getCommentsFromTree(
-          createTree(postsData),
-          postsData
-        );
+        const commentsTrees = createTree(postsData);
 
-        setCommentsMap(resultComments);
+        setCommentsTreeArr(commentsTrees);
       }
     };
 
@@ -57,15 +54,15 @@ const App: React.FC = () => {
 
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route
-            path="/posts"
-            element={<Posts commentsMap={commentsMap} posts={posts} />}
-          />
+          <Route path="/posts" element={<Posts />} />
         </Routes>
       </div>
 
       {showPostModal && <PostModal />}
-      {showCommentModal && <CommentModal />}
+      {/* comment modal will take post data and comments as prop */}
+      {showCommentModal && (
+        <CommentModal commentTree={commentsTreeArr[index]} />
+      )}
     </React.Fragment>
   );
 };

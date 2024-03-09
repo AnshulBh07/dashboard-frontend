@@ -1,0 +1,46 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.container {
+  @include flexProp(column, 1rem, flex-start, flex-start);
+
+  .comment_wrapper {
+    @include flexProp(row, 0.5rem, flex-start, flex-start);
+    width: auto;
+
+    .img_wrapper {
+      max-width: 2.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .info_wrapper {
+      @include flexProp(column, 0.1rem, flex-start, flex-start);
+      max-width: 25rem;
+
+      .text {
+        @include flexProp(column, 0.2rem, flex-start, flex-start);
+        max-width: 25rem;
+        font-size: 0.9rem;
+        background-color: $post-bg;
+        padding: 0.6rem 1rem;
+        border-radius: 20px;
+
+        span {
+          font-weight: 600;
+          font-size: 0.8rem;
+        }
+      }
+
+      .repliesBtn {
+        @include commentSectionButton;
+      }
+    }
+  }
+}

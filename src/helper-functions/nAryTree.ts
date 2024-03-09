@@ -5,13 +5,13 @@
 import { ITreeItem, ISocialMediaPost } from "../data/interface";
 
 // make use of generic classes
-class TreeNode<T extends ITreeItem> {
+export class TreeNode<T extends ITreeItem> {
   //defines the structure of node
-  data: T;
+  data: T | null;
   children: TreeNode<T>[];
 
-  constructor(data: T) {
-    this.data = data;
+  constructor(data?: T) {
+    this.data = data || null;
     this.children = [];
   }
 }
@@ -34,7 +34,7 @@ class NAryTree<T extends ITreeItem> implements INAryTree<T> {
     if (!root) return null;
 
     // base case if root is the required node
-    if (root.data.comment_id === parent) return root;
+    if (root.data!.comment_id === parent) return root;
 
     // loop through all the children and call recursively for each child
     for (const child of root.children) {
@@ -47,17 +47,18 @@ class NAryTree<T extends ITreeItem> implements INAryTree<T> {
 
   public insert(root: TreeNode<T> | null, data: T): TreeNode<T> {
     // if root doesn't exist or parent is null return new node as root of curr tree
-    if (!root) return new TreeNode(data);
+    if (!root) return new TreeNode({ ...data, level: 0 });
 
     if (!data.parent_comment) {
-      root.children.push(new TreeNode(data));
+      root.children.push(new TreeNode({ ...data, level: 0 }));
       return root;
     }
 
     const node = this.findNode(root, data.parent_comment);
 
     if (node) {
-      node.children.push(new TreeNode(data));
+      const level = node.data!.level!;
+      node.children.push(new TreeNode({ ...data, level: level + 1 }));
     }
 
     return root;
@@ -68,7 +69,7 @@ class NAryTree<T extends ITreeItem> implements INAryTree<T> {
 
     if (!root) return preOrderArr;
 
-    preOrderArr.push({ ...root.data, level: level });
+    preOrderArr.push({ ...root.data!, level: level });
 
     for (const child of root.children) {
       preOrderArr.push(...this.preOrder(child, level + 1));
@@ -109,7 +110,6 @@ export const createTree: (arr: ISocialMediaPost[]) => TreeNode<ITreeItem>[] = (
     ans.push(root);
   }
 
-  console.log(ans.length);
   return ans;
 };
 

@@ -3,7 +3,7 @@
 
 .container__main {
   @include flexProp(column, 0.5rem, flex-start, center);
-  width: 80%;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   font-family: "dm sans", sans-serif;

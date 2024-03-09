@@ -10,72 +10,78 @@
   background-color: #f2f4ff;
 
   .container__posts {
-    @include flexProp(column, 2rem, flex-start, center);
+    @include flexProp(row, 0rem, center, center);
     height: 100%;
     width: 70%;
     // background-color: aquamarine;
     padding: 2rem;
     padding-top: 0;
-    overflow: auto;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    .topBar_wrapper {
-      @include flexProp(column, 0.7rem, flex-start, center);
+    .posts_wrapper {
+      @include flexProp(column, 2rem, flex-start, center);
+      height: 100%;
       width: 80%;
-      background-color: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 4px 4px 10px #cecfd8;
+      overflow: auto;
 
-      .create {
-        @include flexProp(row, 0.5em, flex-start, center);
-
-        .img_wrapper {
-          height: 3rem;
-          width: 3rem;
-          border-radius: 50%;
-          overflow: hidden;
-          flex-shrink: 0;
-
-          img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-          }
-        }
-
-        .createBtn {
-          height: 3rem;
-          width: 100%;
-          border-radius: 30px;
-          border: none;
-          text-align: left;
-          padding: 0.4rem 1.5rem;
-          font-size: 1.1rem;
-          background-color: $post-bg;
-          color: $post-text;
-          font-family: "dm sans", sans-serif;
-          font-weight: 400;
-
-          &:hover {
-            background-color: $post-btn-hover;
-          }
-        }
+      &::-webkit-scrollbar {
+        display: none;
       }
 
-      hr {
+      .topBar_wrapper {
+        @include flexProp(column, 0.7rem, flex-start, center);
         width: 100%;
-        border: 1px solid $post-bg;
-      }
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 4px 4px 10px #cecfd8;
 
-      .features_wrapper {
-        @include flexProp(row, 0.5rem, space-between, center);
+        .create {
+          @include flexProp(row, 0.5em, flex-start, center);
 
-        .optionBtn {
-          @include optionButton;
+          .img_wrapper {
+            height: 3rem;
+            width: 3rem;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+
+            img {
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .createBtn {
+            height: 3rem;
+            width: 100%;
+            border-radius: 30px;
+            border: none;
+            text-align: left;
+            padding: 0.4rem 1.5rem;
+            font-size: 1.1rem;
+            background-color: $post-bg;
+            color: $post-text;
+            font-family: "dm sans", sans-serif;
+            font-weight: 400;
+
+            &:hover {
+              background-color: $post-btn-hover;
+            }
+          }
+        }
+
+        hr {
+          width: 100%;
+          border: 1px solid $post-bg;
+        }
+
+        .features_wrapper {
+          @include flexProp(row, 0.5rem, space-between, center);
+
+          .optionBtn {
+            @include optionButton;
+          }
         }
       }
     }

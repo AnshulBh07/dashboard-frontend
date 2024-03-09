@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IReactions, ISocialMediaPost, ITreeItem } from "../../data/interface";
+import { IReactions, ISocialMediaPost } from "../../data/interface";
 import styles from "../../sass/postCardStyles.module.scss";
 import { MdOutlineMoreHoriz } from "react-icons/md";
 import Wow from "../../assets/images/wow.png";
@@ -12,15 +12,21 @@ import { AiOutlineLike } from "react-icons/ai";
 import { MdOutlineModeComment } from "react-icons/md";
 import { TbShare3 } from "react-icons/tb";
 import { ReactionsBar } from "../modal/ReactionsBar";
+import { AppDispatch, RootState } from "../../store";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 interface IProps {
   data: ISocialMediaPost;
-  comments: ITreeItem[];
+  index: number;
 }
 
-export const PostCard: React.FC<IProps> = ({ data, comments }) => {
+export const PostCard: React.FC<IProps> = ({ data, index }) => {
   // here we will need a local state as well for reactions modal
   const [showReactions, setShowReactions] = useState<boolean>(false);
+  const dispatch: AppDispatch = useDispatch();
+
+  const { showCommentModal } = useSelector((state: RootState) => state.post);
 
   const getReactions = (reactionsObj: IReactions) => {
     // create a map for reactions
@@ -47,9 +53,17 @@ export const PostCard: React.FC<IProps> = ({ data, comments }) => {
 
   const reactionArr = getReactions(data.reactions);
 
+  const handleCommentBtnClick = () => {
+    dispatch({ type: "post/setCurrPost", payload: index });
+    dispatch({ type: "post/showComment" });
+  };
+
   return (
     <React.Fragment>
-      <section className={styles.container__main}>
+      <section
+        className={styles.container__main}
+        style={showCommentModal ? { borderRadius: 0, boxShadow: "none" } : {}}
+      >
         <div className={styles.top}>
           <div className={styles.img_wrapper}>
             <img
@@ -103,7 +117,7 @@ export const PostCard: React.FC<IProps> = ({ data, comments }) => {
               })}
             </div>
             <p className={styles.values}>
-              {`${comments.length} comments`}
+              {`${data.comments.length} comments`}
               <span>{`${data.shares} shares`}</span>
             </p>
           </div>
@@ -123,7 +137,10 @@ export const PostCard: React.FC<IProps> = ({ data, comments }) => {
               <AiOutlineLike className={styles.icon} />
               like
             </button>
-            <button className={styles.optionBtn}>
+            <button
+              className={styles.optionBtn}
+              onClick={handleCommentBtnClick}
+            >
               <MdOutlineModeComment className={styles.icon} /> comment
             </button>
             <button className={styles.optionBtn}>
