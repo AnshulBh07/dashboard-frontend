@@ -72,3 +72,23 @@ export interface IPostState {
   posts: ISocialMediaPost[];
   isLoading: boolean;
 }
+
+export interface ILoginState {
+  email: string;
+  password: string;
+  isAuthenticated: boolean;
+}
+
+export interface ISignupState {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  confirm_password: string;
+}
+
+export interface IToast {
+  status: string;
+  message: string;
+  state: string;
+}

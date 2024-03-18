@@ -1,0 +1,47 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.base {
+  //   @include flexProp(row, 0rem, center, center);
+  height: 1.4rem;
+  width: 1.4rem;
+  border-radius: 50%;
+  background-color: rgba($color: #fff, $alpha: 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #fff;
+    bottom: 50%;
+    transform-origin: bottom left;
+    animation: rotate 1.5s linear infinite;
+  }
+
+  &::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: $likes;
+    left: 0;
+    top: 0;
+    transform: scale(0.75);
+    border-radius: 50%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg) skew(10deg);
+  }
+  50% {
+    transform: rotateZ(180deg) skew(-45deg);
+  }
+  100% {
+    transform: rotateZ(360deg) skew(10deg);
+  }
+}

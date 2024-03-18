@@ -1,0 +1,59 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.form_container {
+  @include flexProp(column, 2rem, flex-start, center);
+  width: 25rem;
+  min-height: fit-content;
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px rgba($color: $text1, $alpha: 0.4);
+  font-family: "dm sans", sans-serif;
+
+  .form_wrapper {
+    @include flexProp(column, 1rem, flex-start, center);
+
+    .title {
+      font-size: 1.8rem;
+      text-transform: capitalize;
+      margin-bottom: 1rem;
+    }
+
+    .input_field {
+      @include FormInput;
+    }
+
+    .forgot {
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: $likes-hover;
+      font-weight: 600;
+    }
+
+    .login_btn {
+      @include flexProp(row, 0.7rem, center, center);
+      @include LoginButton;
+      margin-top: 1rem;
+    }
+
+    .redirect {
+      @include flexProp(row, 0.5rem, center, center);
+      font-size: 0.8rem;
+
+      .link {
+        text-decoration: none;
+        font-weight: 600;
+        color: $likes-hover;
+      }
+    }
+  }
+
+  .separator {
+    @include SeparatorLine;
+  }
+
+  .google_login {
+    @include GoogleButton;
+  }
+}

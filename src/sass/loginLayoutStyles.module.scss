@@ -1,0 +1,9 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.container {
+  @include flexProp(row, 0rem, center, center);
+  height: 100vh;
+  background-image: linear-gradient(to top right, #aa7feb, #3b7ad9);
+  position: relative;
+}
